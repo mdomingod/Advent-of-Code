@@ -1,0 +1,31 @@
+Right (R) by m clicks: u visit --> SP + m(mod 100)
+Left (L) by m clicks: u visit --> SP - m(mod 100)
+
+We want to count how many of those visited positions equal 0
+
+CLODE-FROM formulas
+
+Being m the steps of each rotation: m = abs(dist)
+
+
+Right (dist > 0):
+
+The first chance to land on 0 is after threshold = (100 - SP) clicks (unless SP==0, then it’s 100 clicks).
+If m < threshold: 0 hits.
+Else: 1 + (m - threshold) // 100.
+
+
+
+Left (dist < 0):
+
+The first chance to land on 0 is after threshold = SP clicks (unless SP==0, then it’s 100 clicks).
+If m < threshold: 0 hits.
+Else: 1 + (m - threshold) // 100.
+
+
+
+These formulas correctly handle:
+
+Rotations that end on 0.
+Rotations that cross 0 multiple times (e.g., R1000 from SP=50 → 10 hits).
+Starting at 0 where the first hit occurs after 100 clicks, not zero.
